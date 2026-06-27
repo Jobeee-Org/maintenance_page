@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jobeee — Maintenance</title>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <style>
+    :root {
+      --bg-1: #f2d09a;
+      --bg-2: #e7bf80;
+      --card: rgba(255, 255, 255, 0.45);
+      --card-border: rgba(0, 0, 0, 0.08);
+      --text: #101010;
+      --muted: #4b4b4b;
+      --accent: #111111;
+      --accent-soft: rgba(17, 17, 17, 0.08);
+      --shadow: 0 25px 70px rgba(0, 0, 0, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.32), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(255,255,255,0.22), transparent 25%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      overflow: hidden;
+    }
+
+    .background-shape {
+      position: fixed;
+      border-radius: 999px;
+      filter: blur(30px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.45;
+      animation: drift 10s ease-in-out infinite;
+    }
+
+    .shape-1 {
+      width: 260px;
+      height: 260px;
+      top: 8%;
+      left: 8%;
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    .shape-2 {
+      width: 320px;
+      height: 320px;
+      right: 6%;
+      bottom: 6%;
+      background: rgba(0, 0, 0, 0.06);
+      animation-delay: -4s;
+    }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 760px);
+      padding: 42px 32px;
+      text-align: center;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 28px;
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+      animation: fadeUp 0.8s ease;
+    }
+
+    .logo-wrap {
+      position: relative;
+      width: min(100%, 440px);
+      margin: 0 auto 26px;
+      border-radius: 24px;
+      overflow: hidden;
+      animation: floatLogo 4.5s ease-in-out infinite;
+    }
+
+    .logo-wrap::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -35%;
+      width: 30%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.34),
+        transparent
+      );
+      transform: skewX(-18deg);
+      animation: shine 4s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .logo {
+      width: 100%;
+      display: block;
+      border-radius: 20px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.45);
+      border: 1px solid rgba(0,0,0,0.08);
+      color: var(--text);
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .badge-icon {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #111;
+      opacity: 0.75;
+    }
+
+    h1 {
+      font-size: clamp(2.3rem, 6vw, 4.2rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      margin-bottom: 16px;
+      font-weight: 900;
+    }
+
+    .subtitle {
+      max-width: 560px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.7;
+    }
+
+    .loader {
+      width: min(100%, 420px);
+      height: 8px;
+      margin: 30px auto 24px;
+      background: rgba(17, 17, 17, 0.10);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .loader::before {
+      content: "";
+      display: block;
+      width: 38%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #111111, #444444, #111111);
+      animation: loading 2.4s ease-in-out infinite;
+    }
+
+    .discord-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 16px;
+      background: #111111;
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.96rem;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, opacity 0.22s ease;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .discord-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.16);
+      opacity: 0.96;
+    }
+
+    .footer {
+      margin-top: 18px;
+      font-size: 0.84rem;
+      color: rgba(0, 0, 0, 0.55);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes floatLogo {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-7px);
+      }
+    }
+
+    @keyframes shine {
+      0% {
+        left: -40%;
+      }
+      100% {
+        left: 130%;
+      }
+    }
+
+    @keyframes loading {
+      0% {
+        transform: translateX(-115%);
+      }
+      50% {
+        transform: translateX(90%);
+      }
+      100% {
+        transform: translateX(250%);
+      }
+    }
+
+    @keyframes drift {
+      0%, 100% {
+        transform: translate(0, 0);
+      }
+      50% {
+        transform: translate(18px, 18px);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .card {
+        padding: 28px 20px;
+        border-radius: 22px;
+      }
+
+      .logo-wrap {
+        width: min(100%, 320px);
+        margin-bottom: 22px;
+      }
+
+      .subtitle {
+        font-size: 0.96rem;
+      }
+
+      .discord-link {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background-shape shape-1"></div>
+  <div class="background-shape shape-2"></div>
+
+  <main class="card">
+    <div class="logo-wrap">
+      <img src="./logo-jobeee.png" alt="Logo Jobeee" class="logo" />
+    </div>
+
+    
+
+    <h1>Le site est en maintenance</h1>
+
+    <p class="subtitle">
+      Nous effectuons quelques améliorations pour rendre Jobeee plus rapide,
+      plus fluide et plus agréable à utiliser.
+    </p>
+
+    <div class="loader"></div>
+
+    <a
+      class="discord-link"
+      href="https://discord.com/invite/WKTDSATMaA"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Pour plus d’info, rejoignez notre Discord
+    </a>
+
+    <p class="footer">
+      Merci pour votre patience.
+    </p>
+  </main>
+</body>
+</html>
