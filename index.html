@@ -172,6 +172,52 @@
       animation: loading 2.4s ease-in-out infinite;
     }
 
+    .buttons-container {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin: 24px 0;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 20px;
+      border-radius: 16px;
+      font-weight: 700;
+      font-size: 0.96rem;
+      text-decoration: none;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, opacity 0.22s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: #111111;
+      color: white;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.16);
+      opacity: 0.96;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.6);
+      color: #111111;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+      background: rgba(255, 255, 255, 0.75);
+    }
+
     .discord-link {
       display: inline-flex;
       align-items: center;
@@ -265,8 +311,13 @@
         font-size: 0.96rem;
       }
 
+      .btn,
       .discord-link {
         width: 100%;
+      }
+
+      .buttons-container {
+        flex-direction: column;
       }
     }
   </style>
@@ -291,14 +342,25 @@
 
     <div class="loader"></div>
 
-    <a
-      class="discord-link"
-      href="https://discord.com/invite/WKTDSATMaA"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Pour plus d’info, rejoignez notre Discord
-    </a>
+    <div class="buttons-container">
+      <a
+        class="btn btn-secondary"
+        href="https://jobeee.fr"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        ↻ Retester le site
+      </a>
+
+      <a
+        class="btn btn-primary"
+        href="https://discord.com/invite/WKTDSATMaA"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Pour plus d'info, rejoignez notre Discord
+      </a>
+    </div>
 
     <p class="footer">
       Merci pour votre patience.
