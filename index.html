@@ -67,6 +67,42 @@
       animation-delay: -4s;
     }
 
+    .status-button {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      z-index: 10;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.88rem;
+      transition: all 0.22s ease;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .status-button:hover {
+      background: rgba(255, 255, 255, 0.75);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
     .card {
       position: relative;
       z-index: 1;
@@ -296,6 +332,15 @@
       }
     }
 
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.6;
+      }
+    }
+
     @media (max-width: 640px) {
       .card {
         padding: 28px 20px;
@@ -319,12 +364,24 @@
       .buttons-container {
         flex-direction: column;
       }
+
+      .status-button {
+        top: 16px;
+        left: 16px;
+        padding: 8px 12px;
+        font-size: 0.80rem;
+      }
     }
   </style>
 </head>
 <body>
   <div class="background-shape shape-1"></div>
   <div class="background-shape shape-2"></div>
+
+  <a href="https://status.jobeee.fr" target="_blank" rel="noopener noreferrer" class="status-button">
+    <span class="status-dot"></span>
+    Status
+  </a>
 
   <main class="card">
     <div class="logo-wrap">
@@ -343,14 +400,12 @@
     <div class="loader"></div>
 
     <div class="buttons-container">
-      <a
+      <button
         class="btn btn-secondary"
-        href="https://jobeee.fr"
-        target="_blank"
-        rel="noopener noreferrer"
+        onclick="location.reload()"
       >
         ↻ Retester le site
-      </a>
+      </button>
 
       <a
         class="btn btn-primary"
